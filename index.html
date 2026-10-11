@@ -6,8 +6,28 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#000000">
     <meta name="description" content="حاسبة ومراقب البطارية: أداة هندسية دقيقة لحساب زمن التشغيل المتبقي، السعة الفعلية بالأمبير والكيلوواط، وضبط عمق التفريغ الآمن DoD لبطاريات الليثيوم والرصاص.">
-    <meta name="keywords" content="حاسبة البطارية, مراقب البطارية, حساب زمن تشغيل البطارية, حاسبة الطاقة الشمسية, سعة بطارية الليثيوم, حساب Ah و kWh, بطاريات الجل, أحمال الإنفرتر, حساب زمن التفريغ, solar battery runtime calculator, battery backup calculator, lithium battery discharge calculator, battery capacity monitor, solar load calculator, battery runtime estimator, Mazen Al-Awdhali">     <meta property="og:title" content="حاسبة ومراقب البطارية">     <meta property="og:description" content="حاسبة ومراقب البطارية: أداة هندسية دقيقة لحساب زمن التشغيل المتبقي.">     <meta property="og:image" content="https://battery.solartoolspro.com/preview.png">     <meta property="og:type" content="website">     <link rel="canonical" href="https://battery.solartoolspro.com/">
-    <script type="application/ld+json">     {       "@context": "https://schema.org",       "@type": "WebApplication",       "name": "حاسبة ومراقب البطارية",       "alternateName": "Battery Calculator & Monitor",       "description": "أداة هندسية دقيقة لحساب زمن التشغيل المتبقي للبطارية ومراقبة الاستهلاك الفعلي.",       "applicationCategory": "EngineeringApplication",       "operatingSystem": "All",       "author": {         "@type": "Person",         "name": "مازن العوذلي"       }     }     </script>     <title>حاسبة ومراقب البطارية</title>
+    <meta name="keywords" content="حاسبة البطارية, مراقب البطارية, حساب زمن تشغيل البطارية, حاسبة الطاقة الشمسية, سعة بطارية الليثيوم, حساب Ah و kWh, بطاريات الجل, أحمال الإنفرتر, حساب زمن التفريغ, solar battery runtime calculator, battery backup calculator, lithium battery discharge calculator, battery capacity monitor, solar load calculator, battery runtime estimator, Mazen Al-Awdhali">
+    <meta property="og:title" content="حاسبة ومراقب البطارية">
+    <meta property="og:description" content="حاسبة ومراقب البطارية: أداة هندسية دقيقة لحساب زمن التشغيل المتبقي.">
+    <meta property="og:image" content="https://battery.solartoolspro.com/preview.png">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://battery.solartoolspro.com/">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "حاسبة ومراقب البطارية",
+      "alternateName": "Battery Calculator & Monitor",
+      "description": "أداة هندسية دقيقة لحساب زمن التشغيل المتبقي للبطارية ومراقبة الاستهلاك الفعلي.",
+      "applicationCategory": "EngineeringApplication",
+      "operatingSystem": "All",
+      "author": {
+        "@type": "Person",
+        "name": "مازن العوذلي"
+      }
+    }
+    </script>
+    <title>حاسبة ومراقب البطارية</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -31,8 +51,9 @@
         .section:last-of-type { border-bottom: none; }
         .section-title { font-size: 15px; font-weight: 700; color: #10b981; margin-top: 0; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
         .grid-inputs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-        .input-group { display: flex; flex-direction: column; gap: 8px; } 
-        .input-group label { font-size: 12px; color: #94a3b8; font-weight: 600; line-height: 1.3; min-height: 34px; display: flex; align-items: center; justify-content: center; text-align: center; } 
+        .input-group { display: flex; flex-direction: column; gap: 8px; position: relative; } 
+        .input-group label { font-size: 12px; color: #94a3b8; font-weight: 600; line-height: 1.3; min-height: 34px; display: flex; align-items: center; justify-content: center; text-align: center; gap: 4px; } 
+        
         input { width: 100%; height: 46px; background-color: #0f172a; border: 1px solid #475569; color: white; padding: 0 12px; border-radius: 10px; font-size: 14.5px; text-align: center; outline: none; transition: 0.2s; font-weight: 600; direction: ltr; font-family: Arial, sans-serif; }
         input:focus { border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
         input::placeholder { color: #94a3b8 !important; opacity: 1 !important; font-size: 13.5px; font-weight: normal; direction: rtl; unicode-bidi: plaintext; }
@@ -51,18 +72,19 @@
         .custom-option:hover { background-color: #0f172a; color: #10b981; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
         
-        .time-display-container { background: #0f172a; border: 2px solid #1e293b; border-radius: 20px; padding: 24px; text-align: center; margin-bottom: 16px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); }
+        .time-display-container { background: #0f172a; border: 2px solid #1e293b; border-radius: 20px; padding: 24px; text-align: center; margin-bottom: 12px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); }
         .time-label { color: #94a3b8; font-size: 13px; font-weight: 600; margin-bottom: 8px; display: block; }
         .time-value { font-size: 44px; font-weight: 900; color: #10b981; font-family: Arial, sans-serif; direction: ltr; display: flex; justify-content: center; align-items: baseline; gap: 8px; line-height: 1; text-shadow: 0 0 12px rgba(16, 185, 129, 0.3); }
         .time-unit { font-size: 16px; color: #64748b; font-weight: 600; }
+        
+        .battery-note-box { margin-bottom: 16px; padding: 12px; background: rgba(16, 185, 129, 0.08); border: 1px dashed rgba(16, 185, 129, 0.3); border-radius: 12px; font-size: 11.5px; color: #e2e8f0; line-height: 1.6; text-align: center; }
+
         .results-details { background-color: #0f172a; border-radius: 12px; padding: 6px; }
         .result-row { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #1e293b; }
         .result-row:last-child { border-bottom: none; }
         .result-label { font-size: 12.5px; color: #94a3b8; font-weight: 500; }
         .result-value { font-weight: 700; font-size: 14px; direction: ltr; }
         .value-amber { color: #f59e0b; } .value-blue { color: #38bdf8; } .value-green { color: #10b981; }
-        
-        .battery-note-box { margin-top: 12px; margin-bottom: 12px; padding: 12px; background: rgba(16, 185, 129, 0.08); border: 1px dashed rgba(16, 185, 129, 0.3); border-radius: 12px; font-size: 11.5px; color: #e2e8f0; line-height: 1.6; text-align: center; }
         
         .btn-reset { width: calc(100% - 32px); background-color: #dc2626; color: white; margin: 20px auto 0 auto; display: block; font-size: 14px; font-weight: 700; padding: 14px; border-radius: 12px; cursor: pointer; border: none; font-family: inherit; }
 
@@ -338,7 +360,9 @@
 !function(){
     var allowed = ["solartoolspro.com", "panels.solartoolspro.com", "battery.solartoolspro.com", "battery-monitor-pro.vercel.app", "mazen-alawdhali.vercel.app", "localhost", "127.0.0.1"];
     var host = window.location.hostname;
-    if (host !== "" && allowed.indexOf(host) === -1) {
+    var isLocalNetwork = host.startsWith("192.168.") || host.startsWith("10.") || host.startsWith("172.16.") || host.endsWith(".local");
+
+    if (host !== "" && allowed.indexOf(host) === -1 && !isLocalNetwork) {
         document.body.innerHTML = "<div style=\"display:flex;justify-content:center;align-items:center;height:100vh;background-color:#0f172a;padding:20px;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;direction:rtl;\"><div style=\"background:#1e293b;border:1px solid #ef4444;border-radius:20px;padding:32px 20px;text-align:center;width:100%;max-width:340px;box-shadow:0 15px 30px rgba(0,0,0,0.6);\"><div style=\"font-size:50px;margin-bottom:12px;text-shadow:0 0 15px rgba(245,158,11,0.4);\">⚠️</div><h2 style=\"color:#f59e0b;margin:0 0 12px 0;font-size:20px;font-weight:900;\">نسخة غير مصرحة</h2><p style=\"color:#e2e8f0;font-size:14.5px;line-height:1.6;margin-bottom:24px;font-weight:600;\">هذا التطبيق محمي ومصرح للعمل فقط على النطاقات الرسمية.</p><div style=\"background:rgba(239,68,68,0.1);border-radius:12px;padding:14px;color:#ef4444;font-size:13.5px;font-weight:700;border:1px solid rgba(239,68,68,0.2);\">جميع الحقوق محفوظة للمطور<br>م. مازن العوذلي</div></div></div>";
         throw new Error("Domain not authorized");
     }
@@ -626,7 +650,7 @@ window.onclick = function(event) {
             }
         }
     }
-}
+};
 
 function saveToLocalStorage() {
     const data = {
@@ -679,7 +703,7 @@ function loadFromLocalStorage() {
 
 function formatPercent(input, isFocused) {
     if (!input) return;
-    let raw = input.value.replace(/[٠-٩]/g, d => "0123456789"["٠١٢٣٥٦٧٨٩".indexOf(d)]);
+    let raw = input.value.replace(/[٠-٩]/g, d => "0123456789"["٠١٢٣٤٥٦٧٨٩".indexOf(d)]);
     let val = raw.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').substring(0, 7);
     if (isFocused) {
         input.value = val;
@@ -730,22 +754,28 @@ function calculateRuntime() {
     document.getElementById('resTotalKwh').innerText = (totalWh / 1000).toFixed(2) + ' kWh';
     document.getElementById('resUsableKwh').innerText = (usableWh / 1000).toFixed(2) + ' kWh';
     
-    const drawAmps = (totalLoadOnBattery > 0 && sysVolt > 0) ? totalLoadOnBattery / sysVolt : 0;
+    const actualLoadFromBattery = (loadW / systemEfficiency) + invCons;
+    const drawAmps = (actualLoadFromBattery > 0 && sysVolt > 0) ? (actualLoadFromBattery / sysVolt) : 0;
     document.getElementById('resDrawAmps').innerText = drawAmps.toFixed(1) + ' A';
 
     const displayElement = document.getElementById('displayTime');
     const langData = i18n[currentLang];
     
-    saveToLocalStorage();     const noteBox = document.getElementById('batteryNoteMsg');     if (noteBox) {         noteBox.style.display = (totalLoadOnBattery <= 0 || totalWh <= 0 || usableSoc <= 0) ? 'none' : 'block';     }
+    saveToLocalStorage();
+    
+    const noteBox = document.getElementById('batteryNoteMsg');
+    if (noteBox) {
+        noteBox.style.display = (totalLoadOnBattery <= 0 || totalWh <= 0 || usableSoc <= 0) ? 'none' : 'block';
+    }
 
     if (totalLoadOnBattery <= 0 || totalWh <= 0 || usableSoc <= 0) {
         displayElement.innerHTML = `00 <span class="time-unit">${langData.unitHours}</span> 00 <span class="time-unit">${langData.unitMins}</span>`;
         return;
     }
 
-    const hoursDecimal = usableWh / totalLoadOnBattery;
-    const hours = Math.floor(hoursDecimal);
-    const minutes = Math.round((hoursDecimal - hours) * 60);
+    const totalMinutes = Math.round((usableWh / totalLoadOnBattery) * 60);
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
 
     const formattedHours = hours < 10 ? '0' + hours : hours;
     const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
@@ -793,12 +823,9 @@ window.onload = function() {
         const el = document.getElementById(id);
         if(el) {
             el.addEventListener('input', function() {
-                // تحويل الأرقام المشرقية
                 let raw = this.value.replace(/[٠-٩]/g, d => "0123456789"["٠١٢٣٤٥٦٧٨٩".indexOf(d)]);
-                // تقييد الحقل بـ 7 أرقام كحد أقصى ومنع الرموز الغريبة
                 let val = raw.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').substring(0, 7);
                 if (val.startsWith('.')) val = '0' + val;
-                // إزالة الأصفار على اليسار
                 if (val.length > 1 && val.startsWith('0') && !val.startsWith('0.')) {
                     val = val.replace(/^0+/, '');
                 }
