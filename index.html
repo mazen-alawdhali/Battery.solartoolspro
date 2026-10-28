@@ -403,7 +403,7 @@
     <button class="btn-reset" id="btnReset" onclick="resetData()">⚠️ تصفير البيانات</button>
 
     <!-- قسم تطبيقات خدمية -->
-    <div class="playstore-card" style="margin: 20px 16px 0 16px; background-color: rgba(15, 23, 42, 0.6); border: 1px solid #10b981; border-radius: 16px; padding: 16px; text-align: center;"><div id="playStoreTitleText" style="font-size: 13.5px; font-weight: 700; color: #34d399; margin-bottom: 10px;">📲 حمّل الحاسبة الآن من متجر جوجل بلاي</div><a href="https://play.google.com/store/apps/details?id=com.mazen.Battery.Monitor.Pro" target="_blank" rel="noopener noreferrer" style="display: inline-block;"><img id="playStoreBadgeImg" src="https://play.google.com/intl/en_us/badges/static/images/badges/ar_badge_web_generic.png" alt="Get it on Google Play" style="height: 52px; width: auto; vertical-align: middle;"></a></div><div class="tools-box">
+    <div class="playstore-card" style="margin: 20px 16px 0 16px; background-color: rgba(15, 23, 42, 0.6); border: 1px solid #10b981; border-radius: 16px; padding: 16px; text-align: center;"><div id="playStoreTitleText" style="font-size: 13.5px; font-weight: 700; color: #34d399; margin-bottom: 10px;">📲 حمّل الحاسبة الآن من متجر جوجل بلاي</div><a href="https://play.google.com/store/apps/details?id=com.mazen.Battery.Monitor.Pro" target="_blank" rel="noopener noreferrer" style="display: inline-block;"><img id="playStoreBadgeImg" src="https://play.google.com/intl/en_us/badges/static/images/badges/ar_badge_web_generic.png" alt="Get it on Google Play" style="height: 62px; width: auto; vertical-align: middle;"></a></div><div class="tools-box">
         <div class="tools-title" id="toolsTitle">🛠️ تطبيقات خدمية</div>
         <div class="tools-grid">
             <a href="https://calc.solartoolspro.com" onclick="this.href='https://calc.solartoolspro.com?lang='+(localStorage.getItem('batteryMonitorLang')||'ar')" target="_blank" class="tool-btn-smart" id="smartCalcBtn">☀️ الحاسبة الذكية</a>
@@ -461,8 +461,8 @@
     <p data-i18n="updateDesc">يتوفر إصدار جديد من التطبيق لتحسين الأداء والمميزات. هل تريد تحديثه الآن؟</p>
     <div class="update-modal-actions">
         <button class="btn-update-later" onclick="closeUpdateModal()" data-i18n="updateLater">لاحقاً</button>
-        <a href="#" onclick="openUpdateStore(); return false;" class="gplay-badge-btn" title="Get it on Google Play" style="display: inline-flex; align-items: center; justify-content: center; flex: 1; background: #000; border: 1px solid #475569; border-radius: 10px; padding: 4px;">
-            <img id="modalGPlayBadgeImg" src="https://play.google.com/intl/en_us/badges/static/images/badges/ar_badge_web_generic.png" alt="Get it on Google Play" style="height: 34px; width: auto; vertical-align: middle;">
+        <a href="#" onclick="openUpdateStore(); return false;" style="display: inline-flex; align-items: center; justify-content: center; flex: 1; text-decoration: none;">
+            <img id="modalGPlayBadgeImg" src="https://play.google.com/intl/en_us/badges/static/images/badges/ar_badge_web_generic.png" alt="Get it on Google Play" style="height: 46px; width: auto; max-width: 100%; vertical-align: middle;">
         </a>
     </div>
 </div>
@@ -966,7 +966,7 @@ function openUpdateStore() {
     window.open(globalUpdateUrl, '_blank');
 }
 
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', initApp); function initApp() {
     loadFromLocalStorage();
     formatPercent(document.getElementById('battSoc'), false);
     formatPercent(document.getElementById('battDod'), false);
