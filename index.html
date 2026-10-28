@@ -235,11 +235,11 @@
         .update-floating-card p { margin: 0; color: #94a3b8; font-size: 12.5px; line-height: 1.5; text-align: right; }
         [dir="ltr"] .update-floating-card p { text-align: left; }
 
-        /* التعديل الهندسي النهائي لتطابق الأزرار 100% أوتوماتيكياً */
+        /* التنسيق الهندسي المتناسق للأزرار بحيث يتطابق زر لاحقاً مع حجم وصنعة الشعار تماماً */
         .update-modal-actions { 
             display: flex; 
             gap: 12px; 
-            align-items: stretch; /* إجبار الزر ليتمدد ويطابق ارتفاع الصورة تماماً */
+            align-items: center; 
             width: 100%; 
             margin-top: 4px;
         }
@@ -248,32 +248,46 @@
             background: #334155; 
             color: #f8fafc; 
             flex: 1; 
-            border-radius: 8px; 
+            height: 44px; /* ارتفاع ثابت وأنيق متطابق مع الشعار */
+            border-radius: 10px; 
             font-weight: 700; 
-            font-size: 14px; 
+            font-size: 13.5px; 
             cursor: pointer; 
-            border: none; 
+            border: 1px solid #475569; /* إطار جميل كما كان */
             transition: 0.2s; 
             font-family: inherit; 
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             margin: 0;
-            padding: 0;
+            padding: 0 12px;
             box-sizing: border-box;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
-        .btn-update-later:hover { background: #475569; }
+        .btn-update-later:hover { background: #475569; border-color: #94a3b8; }
 
         .modal-gplay-link {
             flex: 1;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            height: 44px; /* ارتفاع متطابق تماماً مع زر لاحقاً */
             text-decoration: none;
+            background-color: #000000;
+            border: 1px solid #475569;
+            border-radius: 10px;
+            padding: 0 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
+        }
+        .modal-gplay-link:hover {
+            border-color: #94a3b8;
+            background-color: #111827;
         }
         .modal-gplay-link img {
-            width: 100%; /* تأخذ مساحتها الكاملة والارتفاع يُحسب تلقائياً */
-            height: auto;
+            height: 28px; /* حجم صورة الشعار بداخل الإطار ليصبح متناسقاً وجميلاً وغير ضخم */
+            width: auto;
+            object-fit: contain;
             display: block;
         }
     </style>
