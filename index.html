@@ -235,7 +235,7 @@
         .update-floating-card p { margin: 0; color: #94a3b8; font-size: 12.5px; line-height: 1.5; text-align: right; }
         [dir="ltr"] .update-floating-card p { text-align: left; }
 
-        .update-modal-actions { display: flex; gap: 10px; align-items: stretch; width: 100%; }
+        .update-modal-actions { display: flex; gap: 10px; align-items: center; width: 100%; }
 
         .btn-update-later { 
             background: #334155; 
@@ -249,9 +249,12 @@
             border: 1px solid #475569; 
             transition: 0.2s; 
             font-family: inherit; 
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            margin: 0;
+            padding: 0 12px;
+            box-sizing: border-box;
         }
         .btn-update-later:hover { background: #475569; }
 
@@ -461,8 +464,8 @@
     <p data-i18n="updateDesc">يتوفر إصدار جديد من التطبيق لتحسين الأداء والمميزات. هل تريد تحديثه الآن؟</p>
     <div class="update-modal-actions">
         <button class="btn-update-later" onclick="closeUpdateModal()" data-i18n="updateLater">لاحقاً</button>
-        <a href="#" onclick="openUpdateStore(); return false;" style="display: inline-flex; align-items: center; justify-content: center; flex: 1; text-decoration: none;">
-            <img id="modalGPlayBadgeImg" src="https://play.google.com/intl/en_us/badges/static/images/badges/ar_badge_web_generic.png" alt="Get it on Google Play" style="height: 46px; width: auto; max-width: 100%; vertical-align: middle;">
+        <a href="#" onclick="openUpdateStore(); return false;" style="display: inline-flex; align-items: center; justify-content: center; flex: 1; text-decoration: none; height: 42px;">
+            <img id="modalGPlayBadgeImg" src="https://play.google.com/intl/en_us/badges/static/images/badges/ar_badge_web_generic.png" alt="Get it on Google Play" style="height: 42px; width: auto; max-width: 100%; object-fit: contain; vertical-align: middle;">
         </a>
     </div>
 </div>
@@ -966,7 +969,7 @@ function openUpdateStore() {
     window.open(globalUpdateUrl, '_blank');
 }
 
-document.addEventListener('DOMContentLoaded', initApp); function initApp() {
+document.addEventListener('DOMContentLoaded', function() {
     loadFromLocalStorage();
     formatPercent(document.getElementById('battSoc'), false);
     formatPercent(document.getElementById('battDod'), false);
@@ -990,7 +993,7 @@ document.addEventListener('DOMContentLoaded', initApp); function initApp() {
     calculateRuntime();
     updateVisitorCount();
     checkAppVersion();
-};
+});
 </script>
 </body>
 </html>
