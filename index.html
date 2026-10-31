@@ -860,7 +860,7 @@ function calculateRuntime() {
     const minSocAllowed = 1 - dod;
     const usableSoc = Math.max(0, socDecimal - minSocAllowed);
     
-    const systemEfficiency = 0.90;
+    const systemEfficiency = (dodVal > 70) ? 0.95 : 0.85;
     const usableWh = (totalWh * usableSoc) * systemEfficiency;
 
     const totalLoadOnBattery = loadW + invCons;
