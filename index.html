@@ -352,7 +352,7 @@
     </div>
 
     <div class="section">
-        <div class="section-title" id="sec3Title">📊 تحليل الطاقة الفعلي</div>
+        <div class="section-title" id="sec3Title"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line><polyline points="6 12 10 8 14 11 18 7"></polyline></svg> تحليل الطاقة الفعلي</div>
         <div class="results-details">
             <div class="result-row">
                 <div class="result-label" id="resTotalLabel">مخزون الطاقة الكلي:</div>
@@ -515,7 +515,7 @@ const i18n = {
         loadWattsPh: 'مثال: 500',
         invConsLabel: 'قدرة استهلاك الإنفرتر (W):',
         invConsPh: 'مثال: 50',
-        sec3Title: '📊 تحليل الطاقة الفعلي',
+        sec3Title: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line><polyline points="6 12 10 8 14 11 18 7"></polyline></svg> تحليل الطاقة الفعلي',
         resTotalLabel: 'مخزون الطاقة الكلي:',
         resUsableLabel: 'الطاقة المتبقية للاستخدام:',
         resDrawLabel: 'تيار السحب من البطارية:',
@@ -568,7 +568,7 @@ const i18n = {
         loadWattsPh: 'e.g. 500',
         invConsLabel: 'Inverter Consumption (W):',
         invConsPh: 'e.g. 50',
-        sec3Title: '📊 Real-Time Power Analysis',
+        sec3Title: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line><polyline points="6 12 10 8 14 11 18 7"></polyline></svg> Real-Time Power Analysis',
         resTotalLabel: 'Total Energy Storage:',
         resUsableLabel: 'Usable Energy Remaining:',
         resDrawLabel: 'Battery Current Draw:',
@@ -636,7 +636,7 @@ function applyLanguage() {
     document.getElementById('invConsLabel').innerText = langData.invConsLabel;
     document.getElementById('invCons').placeholder = langData.invConsPh;
     
-    document.getElementById('sec3Title').innerText = langData.sec3Title;
+    document.getElementById('sec3Title').innerHTML = langData.sec3Title;
     document.getElementById('resTotalLabel').innerText = langData.resTotalLabel;
     document.getElementById('resUsableLabel').innerText = langData.resUsableLabel;
     document.getElementById('resDrawLabel').innerText = langData.resDrawLabel;
