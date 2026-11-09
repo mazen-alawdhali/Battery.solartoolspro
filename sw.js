@@ -1,4 +1,4 @@
-const CACHE_NAME = 'battery-monitor-v2-cache'; 
+const CACHE_NAME = 'battery-monitor-v3-cache'; 
 const urlsToCache = [
   '/',
   '/index.html',
@@ -38,7 +38,7 @@ self.addEventListener('activate', event => {
   );
 });
 
-// 3. اعتراض الطلبات واستراتيجية التحديث الذكي
+// 3. اعتراض الطلبات واستراتيجية التحديث الذكي مع تجاهل معاملات البحث
 self.addEventListener('fetch', event => {
   event.respondWith(
     fetch(event.request)
@@ -52,7 +52,7 @@ self.addEventListener('fetch', event => {
         return networkResponse;
       })
       .catch(() => {
-        return caches.match(event.request);
+        return caches.match(event.request, { ignoreSearch: true });
       })
   );
 });
