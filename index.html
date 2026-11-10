@@ -693,7 +693,7 @@ async function updateVisitorCount() {
     try {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 3000);
-        const response = await fetch(apiUrl, { method: 'POST', signal: controller.signal });
+        const response = await Promise.race([fetch(apiUrl, { method: 'POST', signal: controller.signal }), new Promise((_, r) => setTimeout(() => r(new Error('Timeout')), 3000))]);
         clearTimeout(timeoutId);
         if (!response.ok) throw new Error("API Error");
         const data = await response.json();
