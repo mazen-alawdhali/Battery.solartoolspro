@@ -1,4 +1,4 @@
-const CACHE_NAME = 'battery-monitor-v3-cache'; 
+const CACHE_NAME = 'battery-monitor-v4-cache'; 
 const urlsToCache = [
   '/',
   '/index.html',
@@ -38,11 +38,11 @@ self.addEventListener('activate', event => {
   );
 });
 
-// 3. اعتراض الطلبات واستراتيجية التحديث الذكي مع تجاهل معاملات البحث
+// 3. اعتراض الطلبات واستراتيجية العرض الفوري (Stale-While-Revalidate) لإنهاء تعليق الشعار
 self.addEventListener('fetch', event => {
   event.respondWith(
-    fetch(event.request)
-      .then(networkResponse => {
+    caches.match(event.request, { ignoreSearch: true }).then(cachedResponse => {
+      const fetchPromise = fetch(event.request).then(networkResponse => {
         if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
           const responseToCache = networkResponse.clone();
           caches.open(CACHE_NAME).then(cache => {
@@ -50,10 +50,11 @@ self.addEventListener('fetch', event => {
           });
         }
         return networkResponse;
-      })
-      .catch(() => {
-        return caches.match(event.request, { ignoreSearch: true });
-      })
+      }).catch(() => {
+        return cachedResponse;
+      });
+      return cachedResponse || fetchPromise;
+    })
   );
 });
 

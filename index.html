@@ -466,9 +466,11 @@
 }();
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js?v=update3').then(reg => {
-        console.log('PWA Service Worker Registered Successfully', reg);
-    }).catch(err => console.error('Service Worker Registration Failed', err));
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js?v=update4').then(reg => {
+            console.log('PWA Service Worker Registered Successfully', reg);
+        }).catch(err => console.error('Service Worker Registration Failed', err));
+    });
 }
 
 document.addEventListener('focusin', function(e) {
@@ -682,6 +684,14 @@ async function updateVisitorCount() {
 
     const langData = i18n[currentLang];
 
+    // عرض القيمة المحفوظة محلياً فوراً
+    const cachedVisits = localStorage.getItem('batteryVisits');
+    if (cachedVisits) {
+        counterElement.innerText = Number(cachedVisits).toLocaleString('en-US');
+        counterElement.style.color = '#10b981';
+    }
+
+    // إظهار غير متصل بالبرتقالي فور انقطاع الشبكة
     if (!navigator.onLine) {
         counterElement.innerText = langData.offlineText;
         counterElement.style.color = '#f59e0b';
@@ -693,21 +703,24 @@ async function updateVisitorCount() {
     try {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 3000);
-        const response = await Promise.race([fetch(apiUrl, { method: 'POST', signal: controller.signal }), new Promise((_, r) => setTimeout(() => r(new Error('Timeout')), 3000))]);
+        const response = await fetch(apiUrl, { method: 'POST', signal: controller.signal });
         clearTimeout(timeoutId);
         if (!response.ok) throw new Error("API Error");
         const data = await response.json();
         
         let val = data.visits !== undefined ? data.visits : data.count;
         if (val !== undefined) {
+            localStorage.setItem('batteryVisits', val);
             counterElement.innerText = Number(val).toLocaleString('en-US');
             counterElement.style.color = '#10b981';
         } else {
             throw new Error("Invalid Data");
         }
     } catch (error) {
-        counterElement.innerText = langData.unavailableText;
-        counterElement.style.color = '#ef4444';
+        if (!cachedVisits) {
+            counterElement.innerText = langData.unavailableText;
+            counterElement.style.color = '#ef4444';
+        }
     }
 }
 
