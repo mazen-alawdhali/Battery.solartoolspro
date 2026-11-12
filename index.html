@@ -467,7 +467,7 @@
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js?v=update5').then(reg => {
+        navigator.serviceWorker.register('/sw.js?v=update6').then(reg => {
             console.log('PWA Service Worker Registered Successfully', reg);
         }).catch(err => console.error('Service Worker Registration Failed', err));
     });
@@ -701,10 +701,7 @@ async function updateVisitorCount() {
     const apiUrl = 'https://solar-calculator-pro.vercel.app/api/counter?app=battery_calculator';
 
     try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 3000);
-        const response = await fetch(apiUrl, { method: 'POST', signal: controller.signal });
-        clearTimeout(timeoutId);
+        const response = await fetch(apiUrl, { method: 'POST' });
         if (!response.ok) throw new Error("API Error");
         const data = await response.json();
         
@@ -946,10 +943,7 @@ let globalUpdateUrl = "https://play.google.com/store/apps/details?id=com.mazen.B
 
 async function checkAppVersion() {
     try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 3000);
-        const response = await fetch('version.json?' + new Date().getTime(), { signal: controller.signal });
-        clearTimeout(timeoutId);
+        const response = await fetch('version.json?' + new Date().getTime());
         if (!response.ok) return;
         const data = await response.json();
         if (data.versionCode && data.versionCode > CURRENT_VERSION_CODE) {
