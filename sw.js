@@ -1,4 +1,4 @@
-const CACHE_NAME = 'battery-calculator-v6';
+const CACHE_NAME = 'battery-calculator-v7';
 const NETWORK_TIMEOUT_MS = 3000;
 
 const ASSETS_TO_CACHE = [
@@ -39,8 +39,9 @@ self.addEventListener('activate', (event) => {
 
 // استراتيجية Network-First مع مهلة 3 ثوانٍ والرجوع للكاش عند التأخير أو الأوفلاين
 self.addEventListener('fetch', (event) => {
-    // تتجاهل الطلبات الخارجية مثل APIs أو روابط تحليلات الزيارات
-    if (event.request.method !== 'GET' || !event.request.url.startsWith(self.location.origin)) {
+    // السماح بتخزين الخطوط من Google Fonts وتجاهل بقية الطلبات الخارجية مثل APIs
+    const isGoogleFont = event.request.url.startsWith('https://fonts.googleapis.com') || event.request.url.startsWith('https://fonts.gstatic.com');
+    if (event.request.method !== 'GET' || (!event.request.url.startsWith(self.location.origin) && !isGoogleFont)) {
         return;
     }
 
