@@ -27,7 +27,7 @@
       }
     }
     </script>
-    <title>حاسبة ومراقب البطارية</title>
+    <title>حاسبة ومراقب البطارية</title>     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -38,8 +38,8 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #000000; color: #e2e8f0; margin: 0; padding: 16px 12px; display: flex; flex-direction: column; align-items: center; }
         .container { width: 100%; max-width: 500px; background-color: #000000; border-radius: 24px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.8); padding-bottom: 24px; border: 1px solid #334155; position: relative; overflow: visible; }
         .header { background: url('header_balanced_sky_600w.webp') center/cover no-repeat; color: white; text-align: center; padding: 48px 16px 24px 16px; border-top-left-radius: 24px; border-top-right-radius: 24px; position: relative; overflow: hidden; border-bottom: 1px solid #334155; }
-        .header h1 { margin: 0; font-size: 24px; font-weight: 900; }
-        .header p { margin: 8px 0 0 0; font-size: 13.5px; font-weight: 600; opacity: 0.9; }
+        .header h1 { margin: 0; font-size: 24px; font-weight: 900; color: #ffffff; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75); }
+        .header p { margin: 8px 0 0 0; font-size: 13.5px; font-weight: 700; color: #ffffff; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75); }
         .header-card { background: rgba(15, 23, 42, 0.6); border: 1.5px solid rgba(16, 185, 129, 0.3); border-radius: 20px; padding: 20px 14px; margin-top: 6px; box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.4); }
         
         .lang-btn { position: absolute; top: 16px; left: 16px; background: #000000; color: white; border: 1px solid #334155; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; transition: 0.2s; backdrop-filter: blur(4px); font-family: inherit; display: inline-flex; align-items: center; gap: 6px; }
@@ -74,10 +74,11 @@
         .custom-option:hover { background-color: #0f172a; color: #10b981; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
         
-        .time-display-container { background: #0f172a; border: 2px solid #1e293b; border-radius: 20px; padding: 24px; text-align: center; margin-bottom: 12px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); }
-        .time-label { color: #94a3b8; font-size: 13px; font-weight: 600; margin-bottom: 8px; display: block; }
-        .time-value { font-size: 44px; font-weight: 900; color: #10b981; font-family: Arial, sans-serif; direction: ltr; display: flex; justify-content: center; align-items: baseline; gap: 8px; line-height: 1; text-shadow: 0 0 12px rgba(16, 185, 129, 0.3); }
-        .time-unit { font-size: 16px; color: #64748b; font-weight: 600; }
+        .time-display-container { background: #0f172a; border: 1px solid #1e293b; border-radius: 20px; padding: 24px; text-align: center; margin-bottom: 12px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); transition: all 0.3s ease; }
+        .time-display-container.has-result { border-color: #34d399; box-shadow: 0 0 25px rgba(16, 185, 129, 0.65), 0 0 10px rgba(52, 211, 153, 0.4), inset 0 0 16px rgba(16, 185, 129, 0.25); }
+        .time-label { color: #ffffff; font-size: 13px; font-weight: 600; margin-bottom: 8px; display: block; }
+        .time-value { font-size: 46px; font-weight: 700; color: #4ade80; font-family: 'Chakra Petch', sans-serif; font-variant-numeric: tabular-nums; letter-spacing: 2px; direction: ltr; display: flex; justify-content: center; align-items: baseline; gap: 8px; line-height: 1; text-shadow: 0 0 10px rgba(74, 222, 128, 0.35); }
+        .time-unit { font-size: 16px; color: #ffffff; font-weight: 600; }
         
         .battery-note-box { margin-bottom: 16px; padding: 12px; background: rgba(16, 185, 129, 0.08); border: 1px dashed rgba(16, 185, 129, 0.3); border-radius: 12px; font-size: 11.5px; color: #e2e8f0; line-height: 1.6; text-align: center; }
 
@@ -467,7 +468,7 @@
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js?v=update6').then(reg => {
+        navigator.serviceWorker.register('/sw.js?v=update8').then(reg => {
             console.log('PWA Service Worker Registered Successfully', reg);
         }).catch(err => console.error('Service Worker Registration Failed', err));
     });
@@ -888,12 +889,19 @@ function calculateRuntime() {
     
     saveToLocalStorage();
     
-    const noteBox = document.getElementById('batteryNoteMsg');
-    if (noteBox) {
-        noteBox.style.display = (totalLoadOnBattery <= 0 || totalWh <= 0 || usableSoc <= 0) ? 'none' : 'block';
+    const hasValidResult = !(totalLoadOnBattery <= 0 || totalWh <= 0 || usableSoc <= 0);
+
+    const timeContainer = document.querySelector('.time-display-container');
+    if (timeContainer) {
+        timeContainer.classList.toggle('has-result', hasValidResult);
     }
 
-    if (totalLoadOnBattery <= 0 || totalWh <= 0 || usableSoc <= 0) {
+    const noteBox = document.getElementById('batteryNoteMsg');
+    if (noteBox) {
+        noteBox.style.display = hasValidResult ? 'block' : 'none';
+    }
+
+    if (!hasValidResult) {
         displayElement.innerHTML = `00 <span class="time-unit">${langData.unitHours}</span> 00 <span class="time-unit">${langData.unitMins}</span>`;
         return;
     }
