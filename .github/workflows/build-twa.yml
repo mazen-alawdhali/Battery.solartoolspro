@@ -14,7 +14,7 @@ on:
       version_name:
         description: 'اسم الإصدار الظاهر للمستخدم (Version Name)'
         required: true
-        default: '4'
+        default: '4.0'
 
 jobs:
   build-twa:
@@ -97,7 +97,7 @@ jobs:
           }
           EOF
 
-          bubblewrap update --manifest=twa-manifest.json --appVersionName="${{ github.event.inputs.version_name }}" --skipVersionUpgrade
+          bubblewrap update --manifest=twa-manifest.json --skipVersionUpgrade && sed -i 's/versionName .*/versionName "${{ github.event.inputs.version_name }}"/g' app/build.gradle
           chmod +x gradlew
           ./gradlew bundleRelease assembleRelease \
             -Pandroid.injected.signing.store.file="$(pwd)/signing.keystore" \
@@ -117,4 +117,3 @@ jobs:
           path: |
             ./*.aab
             ./*.apk
-
