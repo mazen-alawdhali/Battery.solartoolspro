@@ -332,7 +332,7 @@
 
             <!-- نسبة التفريغ المسموحة -->
             <div class="input-group" id="dodGroup">
-                <label id="battDodLabel"><span id="battDodLabelText">نسبة التفريغ (% DoD):</span><button type="button" class="dod-info-btn" id="dodInfoBtn" onclick="toggleDodTooltip(event)" aria-label="DoD Guide">💡</button></label><div class="dod-tooltip-box" id="dodTooltipBox" onclick="event.stopPropagation()"><div class="dod-tooltip-title"><span id="dodTooltipTitle">دليل نسبة التفريغ (DoD)</span><button type="button" class="dod-tooltip-close" onclick="closeDodTooltip()" aria-label="Close">✕</button></div><div class="dod-tooltip-item"><span id="dodLithiumLabel">نسبة التفريغ الموصى بها لبطارية الليثيوم:</span><div class="dod-tooltip-badges">80% | 90% | 95% | 100%</div></div><div class="dod-tooltip-item"><span id="dodGelLabel">نسبة التفريغ لبطارية الجل والأسيد ديب سايكل:</span><div class="dod-tooltip-badges">50%</div></div></div>
+                <label id="battDodLabel"><span id="battDodLabelText">نسبة تفريغ البطارية (DoD):</span><button type="button" class="dod-info-btn" id="dodInfoBtn" onclick="toggleDodTooltip(event)" aria-label="DoD Guide">💡</button></label><div class="dod-tooltip-box" id="dodTooltipBox" onclick="event.stopPropagation()"><div class="dod-tooltip-title"><span id="dodTooltipTitle">دليل نسبة التفريغ (DoD)</span><button type="button" class="dod-tooltip-close" onclick="closeDodTooltip()" aria-label="Close">✕</button></div><div class="dod-tooltip-item"><span id="dodLithiumLabel">نسبة التفريغ الموصى بها لبطارية الليثيوم:</span><div class="dod-tooltip-badges">80% | 90% | 95% | 100%</div></div><div class="dod-tooltip-item"><span id="dodGelLabel">نسبة التفريغ لبطارية الجل والأسيد ديب سايكل:</span><div class="dod-tooltip-badges">50%</div></div></div>
                 <input type="text" inputmode="numeric" id="battDod" placeholder="افتراضي (80%)" onfocus="formatPercent(this, true)" onblur="formatPercent(this, false)" oninput="formatPercent(this, true); calculateRuntime()">
             </div>
         </div>
@@ -509,7 +509,7 @@ const i18n = {
         battCountPh: 'مثال: 1',
         battSocLabel: 'نسبة الشحن الحالية (% SoC):',
         battSocPh: 'مثال: 77',
-        battDodLabel: 'نسبة التفريغ (% DoD):', dodTooltipTitle: 'دليل نسبة التفريغ (DoD)', dodLithiumLabel: 'نسبة التفريغ الموصى بها لبطارية الليثيوم:', dodGelLabel: 'نسبة التفريغ لبطارية الجل والأسيد ديب سايكل:',
+        battDodLabel: 'نسبة تفريغ البطارية (DoD):', dodTooltipTitle: 'دليل نسبة التفريغ (DoD)', dodLithiumLabel: 'نسبة التفريغ الموصى بها لبطارية الليثيوم:', dodGelLabel: 'نسبة التفريغ لبطارية الجل والأسيد ديب سايكل:',
         battDodPh: 'افتراضي (80%)',
         sec2Title: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> الاستهلاك والتحويل:',
         loadWattsLabel: 'حمل الأجهزة بالواط (W):',
@@ -562,7 +562,7 @@ const i18n = {
         battCountPh: 'e.g. 1',
         battSocLabel: 'Current Charge (% SoC):',
         battSocPh: 'e.g. 77',
-        battDodLabel: 'Allowed Discharge (% DoD):', dodTooltipTitle: 'Discharge Depth Guide (DoD)', dodLithiumLabel: 'Recommended discharge depth for Lithium battery:', dodGelLabel: 'Discharge depth for Gel & Deep Cycle Lead-Acid:',
+        battDodLabel: 'Battery DoD Rate:', dodTooltipTitle: 'Discharge Depth Guide (DoD)', dodLithiumLabel: 'Recommended discharge depth for Lithium battery:', dodGelLabel: 'Discharge depth for Gel & Deep Cycle Lead-Acid:',
         battDodPh: 'Default (80%)',
         sec2Title: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Consumption & Conversion:',
         loadWattsLabel: 'Appliance Load (W):',
