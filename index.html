@@ -468,7 +468,7 @@
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js?v=update8').then(reg => {
+        navigator.serviceWorker.register('/sw.js?v=update9').then(reg => {
             console.log('PWA Service Worker Registered Successfully', reg);
         }).catch(err => console.error('Service Worker Registration Failed', err));
     });
@@ -854,7 +854,7 @@ function calculateRuntime() {
     const dod = dodVal / 100;
 
     let soc = parseFloat(document.getElementById('battSoc').value.replace(/[^\d.]/g, '')) || 0;
-    if (soc > 100) { soc = 100; document.getElementById('battSoc').value = '100%'; }
+    if (soc > 100) { soc = 100; document.getElementById('battSoc').value = '100%'; } const gradDir = currentLang === 'ar' ? 'to left' : 'to right'; const cellGaps = `repeating-linear-gradient(${gradDir}, transparent 0, transparent calc(10% - 1.5px), #0f172a calc(10% - 1.5px), #0f172a 10%)`; const cell3D = `linear-gradient(to bottom, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.03) 48%, rgba(0,0,0,0.32) 100%)`; const minSafeSoc = 100 - dodVal; const socEl = document.getElementById('battSoc'); if (socEl) { const socCol = soc <= minSafeSoc ? 'rgba(239, 68, 68, 0.55)' : (soc <= minSafeSoc + 15 ? 'rgba(245, 158, 11, 0.52)' : 'rgba(16, 185, 129, 0.48)'); socEl.style.background = soc > 0 ? `${cellGaps}, ${cell3D}, linear-gradient(${gradDir}, ${socCol} ${soc}%, rgba(30, 41, 59, 0.5) ${soc}%)` : '#0f172a'; } const dodEl = document.getElementById('battDod'); if (dodEl) { const hasCustomDod = dodEl.value.replace(/[^\d.]/g, '') !== ''; dodEl.style.background = hasCustomDod ? `${cellGaps}, ${cell3D}, linear-gradient(${gradDir}, rgba(56, 189, 248, 0.45) ${dodVal}%, rgba(30, 41, 59, 0.5) ${dodVal}%)` : '#0f172a'; }
 
     const loadW = parseFloat(document.getElementById('loadWatts').value) || 0;
     const invCons = parseFloat(document.getElementById('invCons').value) || 0;
@@ -878,7 +878,7 @@ function calculateRuntime() {
     const totalLoadOnBattery = loadW + invCons;
 
     document.getElementById('resTotalKwh').innerText = (totalWh / 1000).toFixed(2) + ' kWh';
-    document.getElementById('resUsableKwh').innerText = (usableWh / 1000).toFixed(2) + ' kWh';
+    document.getElementById('resUsableKwh').innerText = (usableWh / 1000).toFixed(2) + ' kWh'; const uEl = document.getElementById('resUsableKwh'); const uRow = uEl ? uEl.parentElement : null; if (uRow) { const uPct = (totalWh > 0 && usableWh > 0) ? Math.min(100, (usableWh / totalWh) * 100) : 0; const uDir = currentLang === 'ar' ? 'to left' : 'to right'; const isDangerSoc = soc > 0 && totalWh > 0 && soc <= minSafeSoc; const isWarnSoc = soc > 0 && totalWh > 0 && !isDangerSoc && soc <= minSafeSoc + 15; const uTint = isDangerSoc ? 'rgba(239, 68, 68, 0.14)' : (isWarnSoc ? 'rgba(245, 158, 11, 0.14)' : 'rgba(16, 185, 129, 0.14)'); const uLine = isDangerSoc ? '#ef4444' : (isWarnSoc ? '#f59e0b' : '#10b981'); uEl.style.color = uLine; uRow.style.background = uPct > 0 ? `linear-gradient(${uDir}, ${uLine} ${uPct}%, transparent ${uPct}%) left bottom / 100% 2.5px no-repeat, linear-gradient(${uDir}, ${uTint} ${uPct}%, transparent ${uPct}%)` : ''; }
     
     const actualLoadFromBattery = (loadW / systemEfficiency) + invCons;
     const drawAmps = (actualLoadFromBattery > 0 && sysVolt > 0) ? (actualLoadFromBattery / sysVolt) : 0;

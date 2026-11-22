@@ -1,4 +1,4 @@
-const CACHE_NAME = 'battery-calculator-v7';
+const CACHE_NAME = 'battery-calculator-v8';
 const NETWORK_TIMEOUT_MS = 3000;
 
 const ASSETS_TO_CACHE = [
