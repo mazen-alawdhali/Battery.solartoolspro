@@ -326,7 +326,7 @@
 
             <!-- نسبة الشحن الحالية -->
             <div class="input-group">
-                <label id="battSocLabel">نسبة الشحن الحالية (% SoC):</label>
+                <label id="battSocLabel">نسبة الشحن الحالية (SoC):</label>
                 <input type="text" inputmode="numeric" id="battSoc" placeholder="مثال: 77" onfocus="formatPercent(this, true)" onblur="formatPercent(this, false)" oninput="formatPercent(this, true); calculateRuntime()">
             </div>
 
@@ -507,7 +507,7 @@ const i18n = {
         capLabelKwh: 'سعة البطارية الواحدة (kWh):',
         battCountLabel: 'عدد البطاريات:',
         battCountPh: 'مثال: 1',
-        battSocLabel: 'نسبة الشحن الحالية (% SoC):',
+        battSocLabel: 'نسبة الشحن الحالية (SoC):',
         battSocPh: 'مثال: 77',
         battDodLabel: 'نسبة تفريغ البطارية (DoD):', dodTooltipTitle: 'دليل نسبة التفريغ (DoD)', dodLithiumLabel: 'نسبة التفريغ الموصى بها لبطارية الليثيوم:', dodGelLabel: 'نسبة التفريغ لبطارية الجل والأسيد ديب سايكل:',
         battDodPh: 'افتراضي (80%)',
@@ -560,7 +560,7 @@ const i18n = {
         capLabelKwh: 'Single Battery Capacity (kWh):',
         battCountLabel: 'Battery Count:',
         battCountPh: 'e.g. 1',
-        battSocLabel: 'Current Charge (% SoC):',
+        battSocLabel: 'Current Charge (SoC):',
         battSocPh: 'e.g. 77',
         battDodLabel: 'Battery DoD Rate:', dodTooltipTitle: 'Discharge Depth Guide (DoD)', dodLithiumLabel: 'Recommended discharge depth for Lithium battery:', dodGelLabel: 'Discharge depth for Gel & Deep Cycle Lead-Acid:',
         battDodPh: 'Default (80%)',
