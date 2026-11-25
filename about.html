@@ -62,7 +62,7 @@
             font-family: inherit;
         }
         .lang-btn svg { width: 15px; height: 15px; fill: currentColor; }
-        .lang-btn:hover { background: #1e293b; }
+        .lang-btn:hover { background: #1e293b; border-color: #10b981; }
         [dir="ltr"] .lang-btn { left: auto; right: 16px; }
 
         .content-section { padding: 20px; border-bottom: 1px solid #1e293b; }
@@ -78,11 +78,11 @@
             background: rgba(16, 185, 129, 0.1);
             border: 1px solid rgba(16, 185, 129, 0.3);
             border-radius: 12px;
-            padding: 12px;
+            padding: 14px;
             text-align: center;
             margin-top: 10px;
         }
-        .dev-name { color: #10b981; font-weight: 700; font-size: 15px; }
+        .dev-name { color: #10b981; font-weight: 700; font-size: 15px; margin-top: 4px; }
 
         .footer-nav { text-align: center; padding: 20px 16px 0 16px; }
         .btn-back {
@@ -91,16 +91,34 @@
             justify-content: center;
             gap: 8px;
             background-color: #0f172a;
-            color: #34d399;
-            border: 1px solid #34d399;
-            padding: 10px 20px;
+            color: #10b981;
+            border: 1.5px solid #10b981;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.28);
+            padding: 11px 24px;
             border-radius: 12px;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 13.5px;
             font-weight: 700;
+            cursor: pointer;
             transition: all 0.2s;
+            font-family: inherit;
         }
-        .btn-back:hover { background-color: #34d399; color: #000; }
+        .btn-back:hover {
+            background-color: rgba(16, 185, 129, 0.15);
+            box-shadow: 0 0 18px rgba(16, 185, 129, 0.45);
+            color: #34d399;
+        }
+
+        .page-footer {
+            text-align: center;
+            margin-top: 22px;
+            padding: 16px 16px 0 16px;
+            border-top: 1px solid #1e293b;
+            font-size: 12.5px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+        .page-footer .app-title-footer { color: #10b981; font-weight: 700; }
     </style>
 </head>
 <body>
@@ -146,15 +164,18 @@
         <div class="badge-dev">
             <div id="devLabel" style="font-size: 12px; color: #94a3b8;">تم التصميم والتطوير بواسطة:</div>
             <div class="dev-name">م. مازن العوذلي</div>
-            <div id="copyRight" style="font-size: 12px; color: #64748b; margin-top: 4px;">جميع الحقوق محفوظة &copy; 2026</div>
         </div>
     </div>
 
     <div class="footer-nav">
-        <a href="index.html" class="btn-back" id="btnBack">
+        <a href="index.html" onclick="return goBackToApp(event);" class="btn-back" id="btnBack">
             🏠 العودة لحاسبة البطارية
         </a>
     </div>
+
+    <footer class="page-footer">
+        <div id="footerCopy">جميع الحقوق محفوظة &copy; 2026 لـ<br><span class="app-title-footer">حاسبة ومراقب البطارية</span></div>
+    </footer>
 </div>
 
 <script>
@@ -182,7 +203,7 @@ const i18n = {
         sec4Title: '👨‍💻 التطوير وحقوق الملكية',
         devLabel: 'تم التصميم والتطوير بواسطة:',
         devName: 'م. مازن العوذلي',
-        copyRight: 'جميع الحقوق محفوظة &copy; 2026',
+        footerCopy: 'جميع الحقوق محفوظة &copy; 2026 لـ<br><span class="app-title-footer">حاسبة ومراقب البطارية</span>',
         btnBack: '🏠 العودة لحاسبة البطارية'
     },
     en: {
@@ -205,14 +226,30 @@ const i18n = {
         sec4Title: '👨‍💻 Developer & Copyright',
         devLabel: 'Designed & Developed by:',
         devName: 'Eng. Mazen Al-Awdhali',
-        copyRight: 'All Rights Reserved &copy; 2026',
+        footerCopy: 'All Rights Reserved &copy; 2026 for<br><span class="app-title-footer">Battery Calculator & Monitor</span>',
         btnBack: '🏠 Back to Battery Calculator'
     }
 };
 
+function goBackToApp(event) {
+    if (event) event.preventDefault();
+    try { window.close(); } catch (e) {}
+    setTimeout(function() {
+        if (!window.closed) {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+    }, 120);
+    return false;
+}
+
 function toggleLanguage() {
     currentLang = currentLang === 'ar' ? 'en' : 'ar';
     localStorage.setItem('battery_app_lang', currentLang);
+    localStorage.setItem('batteryMonitorLang', currentLang);
     applyLanguage();
 }
 
@@ -242,14 +279,14 @@ function applyLanguage() {
     document.getElementById('sec4Title').innerText = data.sec4Title;
     document.getElementById('devLabel').innerText = data.devLabel;
     document.querySelector('.dev-name').innerText = data.devName;
-    document.getElementById('copyRight').innerHTML = data.copyRight;
+    document.getElementById('footerCopy').innerHTML = data.footerCopy;
     document.getElementById('btnBack').innerText = data.btnBack;
 }
 
 window.onload = function() {
     const urlParams = new URLSearchParams(window.location.search);
     const langParam = urlParams.get('lang');
-    const savedLang = localStorage.getItem('battery_app_lang') || localStorage.getItem('solar_app_lang');
+    const savedLang = localStorage.getItem('battery_app_lang') || localStorage.getItem('batteryMonitorLang') || localStorage.getItem('solar_app_lang');
     
     if (langParam && (langParam === 'ar' || langParam === 'en')) {
         currentLang = langParam;
